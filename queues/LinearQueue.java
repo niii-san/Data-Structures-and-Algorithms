@@ -18,15 +18,14 @@ public class LinearQueue {
     }
 
     public void enqueue(int element) {
-        if (isEmpty()) {
-            front++;
-            queue[++rear] = element;
+        if (isFull()) {
+            System.out.println("queue is full");
         } else {
-            if (!isFull()) {
-                queue[++rear] = element;
-            } else {
-                System.out.println("queue is full!");
+            if (isEmpty()) {
+                front++;
             }
+            queue[++rear] = element;
+
         }
     }
 
@@ -40,7 +39,7 @@ public class LinearQueue {
 
     }
 
-    public int currentFrontElement() {
+    public int peek() {
         if (!isEmpty())
             return queue[front];
         else
@@ -52,7 +51,7 @@ public class LinearQueue {
     }
 
     public boolean isEmpty() {
-        return front == -1 && rear == -1;
+        return front == -1;
     }
 
     public boolean isFull() {

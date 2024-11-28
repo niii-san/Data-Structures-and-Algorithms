@@ -1,53 +1,60 @@
-package etcs;
+package queues;
 
 public class CircularQueue {
 
+    int size;
+    int[] queue;
     int front = -1;
     int rear = -1;
-    int size;
-    int queue[];
 
-    CircularQueue(int size) {
+    public CircularQueue(int size) {
         this.size = size;
         this.queue = new int[size];
     }
 
-    void enqueue(int data) {
-
+    public void enqueue(int data) {
         if (isFull()) {
-            System.out.println("queue is full");
+            System.out.println("queue is currently full");
         } else {
-            if (front == -1) {
-                front = 0;
+            if (isEmpty()) {
+                front++;
             }
             rear = (rear + 1) % size;
             queue[rear] = data;
         }
     }
 
-    int dequeue() {
+    public int dequeue() {
         if (isEmpty()) {
             System.out.println("queue is empty");
             return -1;
         } else {
             if (front == rear) {
-                int temp = front;
                 front = rear = -1;
-                return queue[temp];
             }
-
             int temp = front;
             front = (front + 1) % size;
             return queue[temp];
-
         }
     }
 
-    boolean isEmpty() {
-        return front == -1 && rear == -1;
+    public int[] getFullQueue() {
+        return queue;
     }
 
-    boolean isFull() {
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("queue is empty");
+            return -1;
+        }
+        return queue[front];
+    }
+
+    public boolean isEmpty() {
+        return front == -1;
+    }
+
+    public boolean isFull() {
         return (rear + 1) % size == front;
     }
 
