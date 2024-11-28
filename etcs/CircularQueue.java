@@ -1,4 +1,4 @@
-package queues;
+package etcs;
 
 public class CircularQueue {
 

@@ -1,21 +1,37 @@
 
+
 import java.util.Arrays;
 
-import stacks.*;
+import linkedlists.*;
+import queues.LinearQueue;
 
 public class Playground {
     public static void main(String[] args) {
 
-        GenericStack<Integer> s1 = new GenericStack<Integer>(5);
-        s1.push(20);
-        s1.push(30);
-        s1.push(40);
-        s1.push(50);
-        s1.push(60);
+      LinearQueue q1 = new LinearQueue(5);
+
+      q1.enqueue(1);
+      q1.enqueue(2);
+      q1.enqueue(3);
+      q1.enqueue(4);
+      q1.enqueue(5);
 
 
-        System.out.println(s1.peek());
-        System.out.println(Arrays.toString(s1.getFullStack()));
+
+
+      System.out.println(Arrays.toString(q1.getFullQueue()));
+      System.out.println("current elem at front > "+q1.currentFrontElement());
+
+      System.out.println(q1.dequeue());
+      System.out.println(q1.dequeue());
+      System.out.println(q1.dequeue());
+      System.out.println(q1.dequeue());
+
+      System.out.println(Arrays.toString(q1.getFullQueue()));
+      System.out.println("current elem at front > "+q1.currentFrontElement());
+      q1.enqueue(4);
+      q1.enqueue(4);
+      q1.enqueue(4);
 
     }
 }

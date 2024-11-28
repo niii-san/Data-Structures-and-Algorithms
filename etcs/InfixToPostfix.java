@@ -1,3 +1,4 @@
+package etcs;
 public class InfixToPostfix {
 
     int precedence(char ch) {
