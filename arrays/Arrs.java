@@ -34,22 +34,17 @@ public class Arrs {
     }
 
     static int[] deletion(int[] arr, int position) {
+        int newNewArr[] = new int[arr.length - 1];
 
-        int elementValue = arr[position];
-
-        // shifting elements
-        for (int i = position; i < arr.length - 1; i++) {
-            arr[i] = arr[i + 1];
+        for (int i = 0; i < position; i++) {
+            newNewArr[i] = arr[i];
         }
 
-        // creating new array with -1 length
-        int[] result = new int[arr.length - 1];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = arr[i];
+        for (int i = position; i < newNewArr.length; i++) {
+            newNewArr[i] = arr[i + 1];
         }
-        
 
-        return result;
+        return newNewArr;
     }
 
     public static void main(String[] args) {
