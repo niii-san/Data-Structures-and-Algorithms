@@ -1,8 +1,11 @@
-package etcs;
+package linkedlist;
 
 public class SinglyLinkedList {
 
-    public static class Node {
+    Node head = null;
+    Node tail = null;
+
+    static class Node {
         int data;
         Node next;
 
@@ -12,12 +15,8 @@ public class SinglyLinkedList {
         }
     }
 
-    Node head = null;
-    Node tail = null;
-
     public void addNode(int data) {
 
-        // * O(1) */
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -25,16 +24,7 @@ public class SinglyLinkedList {
         } else {
             tail.next = newNode;
             tail = newNode;
-
-            // * O(n) */
-            // Node current = head;
-
-            // while (current.next != null) {
-            // current = current.next;
-            // }
-            // current.next = newNode;
         }
-
     }
 
     public void printList() {
@@ -47,9 +37,7 @@ public class SinglyLinkedList {
     }
 
     public void addHeadFirst(int data) {
-
         Node newNode = new Node(data);
-
         if (head == null) {
             head = tail = newNode;
         } else {
