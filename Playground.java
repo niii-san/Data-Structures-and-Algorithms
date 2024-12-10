@@ -1,19 +1,22 @@
-import linkedlist.DoublyLinkedList;
-import linkedlist.DoublyLinkedList.Node;
+import caching.LRUcaching;
+import etcs.MinMax;
+import etcs.MinMax.Pair;
 
 public class Playground {
     public static void main(String[] args) {
 
-        DoublyLinkedList d1 = new DoublyLinkedList();
+        LRUcaching l = new LRUcaching(3);
 
-        Node n1 = d1.addNode(1);
-        Node n2 = d1.addNode(2);
-        Node n3 = d1.addNode(3);
+        l.put(1, 10);
+        l.put(2, 20);
+        l.put(3, 30);
 
-        
-        
-        d1.removeAt(3);
+        l.printList();
+        System.out.println("-----------------");
 
-        d1.printList();
+        l.put(5,50);
+
+        l.printList();
+
     }
 }

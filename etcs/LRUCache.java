@@ -41,6 +41,18 @@ public class LRUCache {
 
     }
 
+    int get(int key) {
+        Node node = map.get(key);
+        if (node != null) {
+
+            removeNode(node);
+            insert(node);
+
+            return node.v;
+        }
+        return -1;
+    }
+
     Node dummyhead = new Node(0, 0);
     Node dummytail = new Node(0, 0);
 
@@ -75,18 +87,6 @@ public class LRUCache {
         node.next = null;
         node.prev = null;
 
-    }
-
-    int get(int key) {
-        Node node = map.get(key);
-        if (node != null) {
-
-            removeNode(node);
-            insert(node);
-
-            return node.v;
-        }
-        return -1;
     }
 
 }
