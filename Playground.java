@@ -1,22 +1,18 @@
-import caching.LRUcaching;
-import etcs.MinMax;
-import etcs.MinMax.Pair;
+import java.util.Arrays;
+
+import DivideAndConquer.MergeSort;
 
 public class Playground {
     public static void main(String[] args) {
 
-        LRUcaching l = new LRUcaching(3);
+        int arr[]={5,1,3,9,2,4,8,7,6};
 
-        l.put(1, 10);
-        l.put(2, 20);
-        l.put(3, 30);
+        MergeSort.mergesort(arr, 0, 8);
 
-        l.printList();
-        System.out.println("-----------------");
+        System.out.println(Arrays.toString(arr));
 
-        l.put(5,50);
+        
 
-        l.printList();
 
     }
 }
