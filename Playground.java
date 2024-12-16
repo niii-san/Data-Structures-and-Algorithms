@@ -1,18 +1,17 @@
 import java.util.Arrays;
 
-import DivideAndConquer.MergeSort;
+import DivideAndConquer.QuickSort;
 
 public class Playground {
     public static void main(String[] args) {
 
-        int arr[]={5,1,3,9,2,4,8,7,6};
+        int arr[] = { 5, 1, 3, 9, 2,2, 4, 8, 7, 6 };
 
-        MergeSort.mergesort(arr, 0, 8);
+        System.out.println("Before QS: " + Arrays.toString(arr));
 
-        System.out.println(Arrays.toString(arr));
+        QuickSort.quicksort(arr, 0, 9);
 
-        
-
+        System.out.println("After QS: " + Arrays.toString(arr));
 
     }
 }
