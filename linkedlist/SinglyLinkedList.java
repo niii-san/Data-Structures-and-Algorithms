@@ -2,8 +2,8 @@ package linkedlist;
 
 public class SinglyLinkedList {
 
-    Node head = null;
-    Node tail = null;
+    public Node head = null;
+    public Node tail = null;
 
     public static class Node {
         public int data;

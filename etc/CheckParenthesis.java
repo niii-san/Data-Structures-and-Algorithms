@@ -1,4 +1,4 @@
-package etcs;
+package etc;
 
 public class CheckParenthesis {
 
