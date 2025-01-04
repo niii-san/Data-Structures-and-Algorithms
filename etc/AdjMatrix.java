@@ -1,4 +1,4 @@
-package graphs;
+package etc;
 
 import linkedlist.SinglyLinkedList;
 
