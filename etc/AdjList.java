@@ -1,13 +1,14 @@
 package etc;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import linkedlist.SinglyLinkedList;
+import stacks.IntStack;
 
 public class AdjList {
     SinglyLinkedList list[];
     int vertices;
+    IntStack stack ; 
 
     public AdjList(int vertices) {
         this.vertices = vertices;
@@ -16,7 +17,6 @@ public class AdjList {
             list[i] = new SinglyLinkedList();
         }
     }
-
     public void addEdges(int u, int v) {
         list[u].addNode(v);
         list[v].addNode(u);
@@ -42,6 +42,33 @@ public class AdjList {
             current = current.next;
         }
         return adjNodes;
+    }
+
+    public void depthfirstsearch(int source) {
+        boolean visited[] = new boolean[vertices];
+        dfs(source, visited);
+    }
+
+
+    public void nrDepthfirstSeach(int source){
+        boolean visited[] = new boolean[vertices];
+        stack = new IntStack(vertices);
+        
+    }
+
+
+    void dfs(int rootnode, boolean[] visited) {
+        System.out.println(rootnode);
+        // get adjnodes and traverse through list
+
+        SinglyLinkedList.Node current = list[rootnode].head;
+        while (current != null) {
+            if (!visited[current.data]) {
+                dfs(current.data, visited);
+            }
+            current = current.next;
+        }
+
     }
 
     public static void main(String[] args) {
