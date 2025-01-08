@@ -13,28 +13,35 @@ public class CircularQueue {
     }
 
     public void enqueue(int data) {
-        if (isFull()) {
-            System.out.println("queue is currently full");
-        } else {
-            if (isEmpty()) {
-                front++;
-            }
-            rear = (rear + 1) % size;
+        if (isEmpty()) {
+            front = 0;
+            rear = 0;
             queue[rear] = data;
+
+        } else {
+            if (isFull()) {
+                System.out.println("Queue is full");
+            } else {
+                rear = (rear + 1) % size;
+                queue[rear] = data;
+            }
+
         }
     }
 
     public int dequeue() {
+
         if (isEmpty()) {
             System.out.println("queue is empty");
             return -1;
         } else {
+            int temp = queue[front];
             if (front == rear) {
                 front = rear = -1;
+            } else {
+                front = (front + 1) % size;
             }
-            int temp = front;
-            front = (front + 1) % size;
-            return queue[temp];
+            return temp;
         }
     }
 

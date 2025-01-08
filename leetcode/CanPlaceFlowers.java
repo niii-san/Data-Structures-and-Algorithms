@@ -28,7 +28,7 @@ public class CanPlaceFlowers {
         int bedLength = flowerbed.length;
 
         if(bedLength==0 && n>=1) return false;
-        else if(bedLength==0 && n==0) return true;
+         if(bedLength==0 && n==0) return true;
 
         if(bedLength==1 &&flowerbed[0]==1 && n>=1) return false; 
         if(bedLength==1&& flowerbed[0]==0 && n==1) return true;
@@ -59,8 +59,8 @@ public class CanPlaceFlowers {
 
     public static void main(String[] args) {
 
-        int[] flowerbed = { 1,0,0,0,1,0,0 };
-        boolean result = solution(flowerbed, 2);
+        int[] flowerbed = { 0 };
+        boolean result = solution(flowerbed, 1);
         System.out.println(result);
 
     }

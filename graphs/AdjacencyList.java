@@ -3,6 +3,8 @@ package graphs;
 import java.util.ArrayList;
 
 import linkedlist.SinglyLinkedList;
+import linkedlist.SinglyLinkedList.Node;
+import queues.CircularQueue;
 
 public class AdjacencyList {
     int vertices;
@@ -44,6 +46,29 @@ public class AdjacencyList {
         return adjNodes;
     }
 
+    public void BFS(int source) {
+        CircularQueue q = new CircularQueue(vertices);
+        boolean visited[] = new boolean[vertices];
+
+        q.enqueue(source);
+        visited[source] = true;
+
+        System.out.print("Result: ");
+        while (!q.isEmpty()) {
+            int x = q.dequeue();
+            System.out.print(x + ", ");
+            Node current = list[x].head;
+            while (current != null) {
+                if (!visited[current.data]) {
+                    q.enqueue(current.data);
+                    visited[current.data] = true;
+                }
+                current = current.next;
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
 
         AdjacencyList a1 = new AdjacencyList(5);
@@ -56,8 +81,10 @@ public class AdjacencyList {
         a1.addEdges(2, 3);
         a1.addEdges(3, 4);
 
-        ArrayList<Integer> result = a1.getAdjacentNodesOf(4);
-        System.out.println(result);
+        a1.BFS(0);
+
+        // ArrayList<Integer> result = a1.getAdjacentNodesOf(4);
+        // System.out.println(result);
 
     }
 

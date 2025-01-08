@@ -1,6 +1,8 @@
 package graphs;
 
 import linkedlist.SinglyLinkedList;
+import queues.CircularQueue;
+import queues.LinearQueue;
 
 public class AdjacencyMatrix {
 
@@ -48,6 +50,29 @@ public class AdjacencyMatrix {
         }
     }
 
+    public void BFS(int source) {
+        CircularQueue q = new CircularQueue(vertices);
+        boolean visited[] = new boolean[vertices];
+
+        q.enqueue(source);
+        visited[source] = true;
+
+        System.out.print("Result: ");
+        while (!q.isEmpty()) {
+            int x = q.dequeue();
+            System.out.print(x + ", ");
+            for (int j = 0; j < vertices; j++) {
+                if (matrix[x][j] != 0) {
+                    if (!visited[j]) {
+                        q.enqueue(j);
+                        visited[j] = true;
+                    }
+                }
+            }
+
+        }
+    }
+
     public static void main(String[] aggs) {
 
         AdjacencyMatrix a1 = new AdjacencyMatrix(5);
@@ -58,10 +83,12 @@ public class AdjacencyMatrix {
         a1.addEdges(1, 4);
         a1.addEdges(4, 3);
 
+        a1.BFS(4);
+
         // SinglyLinkedList.Node r1 = a1.getAdjacentNodesOf(1);
         // while (r1 != null) {
-        //     System.out.print(r1.data + ", ");
-        //     r1 = r1.next;
+        // System.out.print(r1.data + ", ");
+        // r1 = r1.next;
         // }
 
     }

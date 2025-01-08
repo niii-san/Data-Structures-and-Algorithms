@@ -2,6 +2,7 @@ package etc;
 
 import linkedlist.SinglyLinkedList;
 import queues.CircularQueue;
+import stacks.IntStack;
 
 public class AdjMatrix {
 
@@ -13,9 +14,9 @@ public class AdjMatrix {
         matrix = new int[vertices][vertices];
     }
 
-    void addEdges(int u, int v) {
-        matrix[u][v] = 1;
-        matrix[v][u] = 1;
+    void addEdges(int u, int v, int w) {
+        matrix[u][v] = w;
+        matrix[v][u] = w;
     }
 
     void printGraph() {
@@ -77,15 +78,71 @@ public class AdjMatrix {
 
     }
 
+    int dijakstra(int source, int destination) {
+        int dist[] = new int[vertices];
+        int prevpath[] = new int[vertices];
+        boolean visited[] = new boolean[vertices];
+
+        for (int i = 0; i < vertices; i++) {
+            dist[i] = Integer.MAX_VALUE;
+            prevpath[i] = -1;
+        }
+
+        dist[source] = 0;
+
+        for (int i = 0; i < vertices; i++) {
+            // * find minimum vertex
+            int min_vertex = findMinVertex(dist, visited);
+            visited[min_vertex] = true;
+
+            for (int j = 0; j < vertices; j++) {
+                if (matrix[min_vertex][j] != 0) {
+                    if (!visited[j] && dist[min_vertex] + matrix[min_vertex][j] < dist[j]) {
+                        dist[j] = dist[min_vertex] + matrix[min_vertex][j];
+                        prevpath[j] = min_vertex;
+                    }
+                }
+            }
+
+        }
+        // print path
+        int x = destination;
+        IntStack stk = new IntStack(vertices);
+        stk.push(x);
+        while (prevpath[x]!=-1) {
+            x=prevpath[x];
+            stk.push(x);
+        }
+        while(!stk.isEmpty()){
+            System.out.print(stk.pop());
+        }
+        return dist[destination];
+    }
+
+    int findMinVertex(int[] dist, boolean[] visited) {
+        int min = -1;
+        for (int i = 0; i < vertices; i++) {
+            if (min == -1 && !visited[i] || dist[i] < dist[min] && !visited[i]) {
+                min = 1;
+            }
+        }
+        return min;
+    }
+
     public static void main(String[] args) {
-        AdjMatrix adj = new AdjMatrix(5);
-        adj.addEdges(0, 1);
-        adj.addEdges(0, 2);
-        adj.addEdges(1, 3);
-        adj.addEdges(1, 4);
-        adj.addEdges(2, 3);
-        adj.addEdges(3, 4);
-        adj.printGraph();
+        AdjMatrix adj = new AdjMatrix(6);
+        adj.addEdges(0, 1, 10);
+        adj.addEdges(0, 5, 100);
+        adj.addEdges(0, 2, 5);
+        adj.addEdges(1, 2, 2);
+        adj.addEdges(1, 3, 5);
+        adj.addEdges(2, 3, 10);
+        adj.addEdges(2, 4, 20);
+        adj.addEdges(3, 5, 2);
+        adj.addEdges(4, 5, 5);
+
+        int result = adj.dijakstra(0, 5);
+        System.out.println(result);
 
     }
 
