@@ -49,14 +49,6 @@ public class AdjList {
         dfs(source, visited);
     }
 
-
-    public void nrDepthfirstSeach(int source){
-        boolean visited[] = new boolean[vertices];
-        stack = new IntStack(vertices);
-        
-    }
-
-
     void dfs(int rootnode, boolean[] visited) {
         System.out.println(rootnode);
         // get adjnodes and traverse through list
@@ -71,6 +63,10 @@ public class AdjList {
 
     }
 
+    // public void nrDepthfirstSeach(int source){
+        // boolean visited[] = new boolean[vertices];
+        // stack = new IntStack(vertices);
+    // }
     public static void main(String[] args) {
         AdjList adj = new AdjList(5);
         adj.addEdges(0, 1);

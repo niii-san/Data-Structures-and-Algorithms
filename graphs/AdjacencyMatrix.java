@@ -73,17 +73,39 @@ public class AdjacencyMatrix {
         }
     }
 
+    public void depthfirstsearch(int source) {
+        boolean visited[] = new boolean[vertices];
+        System.out.print("Result: ");
+        dfs(source, visited);
+
+    }
+
+    private void dfs(int node, boolean visited[]) {
+        System.out.print(node + ", ");
+        visited[node] = true;
+        for (int j = 0; j < vertices; j++) {
+            if (matrix[node][j] != 0) {
+                if (!visited[j]) {
+                    dfs(j, visited);
+                }
+            }
+        }
+    }
+
     public static void main(String[] aggs) {
 
-        AdjacencyMatrix a1 = new AdjacencyMatrix(5);
+        AdjacencyMatrix a1 = new AdjacencyMatrix(8);
         a1.addEdges(0, 1);
         a1.addEdges(0, 2);
-        a1.addEdges(2, 1);
-        a1.addEdges(1, 3);
-        a1.addEdges(1, 4);
-        a1.addEdges(4, 3);
+        a1.addEdges(0, 3);
+        a1.addEdges(1, 2);
+        a1.addEdges(1, 5);
+        a1.addEdges(1, 6);
+        a1.addEdges(3, 4);
+        a1.addEdges(3, 7);
 
-        a1.BFS(4);
+        // a1.BFS(4);
+        a1.depthfirstsearch(0);
 
         // SinglyLinkedList.Node r1 = a1.getAdjacentNodesOf(1);
         // while (r1 != null) {

@@ -66,22 +66,42 @@ public class AdjacencyList {
                 current = current.next;
             }
         }
+    }
+
+    public void depthfirstsearch(int source) {
+        boolean visited[] = new boolean[vertices];
+        System.out.print("Result: ");
+        dfs(source, visited);
+    }
+
+    private void dfs(int node, boolean visited[]) {
+        System.out.print(node + ", ");
+        Node current = list[node].head;
+        visited[node]=true;
+        while (current != null) {
+            if(!visited[current.data]){
+                dfs(current.data, visited);
+            }
+            current = current.next;
+        }
 
     }
 
     public static void main(String[] args) {
 
-        AdjacencyList a1 = new AdjacencyList(5);
+        AdjacencyList a1 = new AdjacencyList(8);
         a1.addEdges(0, 1);
         a1.addEdges(0, 2);
-        a1.addEdges(0, 4);
-        a1.addEdges(1, 3);
-        a1.addEdges(1, 4);
-        a1.addEdges(2, 4);
-        a1.addEdges(2, 3);
+        a1.addEdges(0, 3);
+        a1.addEdges(1, 2);
+        a1.addEdges(1, 5);
+        a1.addEdges(1, 6);
         a1.addEdges(3, 4);
+        a1.addEdges(3, 7);
 
-        a1.BFS(0);
+        // a1.BFS(0);
+        // a1.printLists();
+        a1.depthfirstsearch(4);
 
         // ArrayList<Integer> result = a1.getAdjacentNodesOf(4);
         // System.out.println(result);
