@@ -3,6 +3,7 @@ package graphs;
 import linkedlist.SinglyLinkedList;
 import queues.CircularQueue;
 import queues.LinearQueue;
+import stacks.IntStack;
 
 public class AdjacencyMatrix {
 
@@ -92,6 +93,27 @@ public class AdjacencyMatrix {
         }
     }
 
+    public void nrDFS(int source) {
+        IntStack stk = new IntStack(vertices);
+        boolean visited[] = new boolean[vertices];
+
+        stk.push(source);
+        visited[source] = true;
+
+        System.out.print("\nNon recursize DFS result: ");
+        while (!stk.isEmpty()) {
+            int current = stk.pop();
+            System.out.print(current + ", ");
+            for (int j = 0; j < vertices; j++) {
+                if (matrix[current][j] != 0 && !visited[j]) {
+                    stk.push(j);
+                    visited[j] = true;
+                }
+            }
+        }
+
+    }
+
     public static void main(String[] aggs) {
 
         AdjacencyMatrix a1 = new AdjacencyMatrix(8);
@@ -105,7 +127,7 @@ public class AdjacencyMatrix {
         a1.addEdges(3, 7);
 
         // a1.BFS(4);
-        a1.depthfirstsearch(0);
+        a1.nrDFS(0);
 
         // SinglyLinkedList.Node r1 = a1.getAdjacentNodesOf(1);
         // while (r1 != null) {
