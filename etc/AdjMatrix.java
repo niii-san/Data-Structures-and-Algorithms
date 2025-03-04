@@ -1,10 +1,36 @@
 package etc;
 
+import java.util.Arrays;
+
 import linkedlist.SinglyLinkedList;
 import queues.CircularQueue;
 import stacks.IntStack;
 
 public class AdjMatrix {
+
+    // * mst
+
+    public static class Edge implements Comparable<Edge> {
+        int u;
+        int v;
+        int w;
+
+        public Edge(int u, int v, int w) {
+            this.u = u;
+            this.v = v;
+            this.w = w;
+        }
+
+        @Override
+        public int compareTo(Edge o) {
+            return this.w - o.w;
+        }
+    }
+
+    // * mst end
+
+    Edge[] edges;
+    int edgeindx = -1; // * mst
 
     int[][] matrix;
     int vertices;
@@ -12,11 +38,55 @@ public class AdjMatrix {
     public AdjMatrix(int vertices) {
         this.vertices = vertices;
         matrix = new int[vertices][vertices];
+        edges = new Edge[vertices * (vertices - 1) / 2];
     }
 
     void addEdges(int u, int v, int w) {
         matrix[u][v] = w;
         matrix[v][u] = w;
+        edges[++edgeindx] = new Edge(u, v, w); // * mst
+    }
+
+    void krushkalsAlgorithm() {
+        int parent[] = new int[vertices];
+        int size[] = new int[vertices];
+        int mst[][] = new int[vertices][vertices];
+        for (int i = 0; i < vertices; i++) {
+            parent[i] = -1;
+        }
+        Arrays.sort(edges);
+        int edgeTaken = 0;
+        int edgeCounter = -1;
+        while (edgeTaken < vertices) {
+            Edge e = edges[++edgeCounter];
+            int uabsroot = find(e.u, parent);
+            int vbasroot = find(e.v, parent);
+            if (uabsroot == vbasroot) {
+                // cycle continue
+                continue;
+            }
+            mst[e.u][e.v] = e.w;
+            mst[e.v][e.u] = e.w;
+            union(uabsroot, vbasroot, parent, size);
+            edgeTaken++;
+        }
+
+    }
+
+    void union(int uabsroot, int vbasroot, int parent[], int size[]) {
+        if (size[uabsroot] > size[vbasroot]) {
+            parent[vbasroot] = uabsroot;
+        } else if (size[uabsroot] < size[vbasroot]) {
+            parent[uabsroot] = vbasroot;
+
+        }
+    }
+
+    int find(int u, int parent[]) {
+        if (parent[u] == -1) {
+            return u;
+        }
+        return find(parent[u], parent);
     }
 
     void printGraph() {
@@ -83,6 +153,7 @@ public class AdjMatrix {
         int prevpath[] = new int[vertices];
         boolean visited[] = new boolean[vertices];
 
+        // * populating distance and prev path
         for (int i = 0; i < vertices; i++) {
             dist[i] = Integer.MAX_VALUE;
             prevpath[i] = -1;
@@ -109,11 +180,11 @@ public class AdjMatrix {
         int x = destination;
         IntStack stk = new IntStack(vertices);
         stk.push(x);
-        while (prevpath[x]!=-1) {
-            x=prevpath[x];
+        while (prevpath[x] != -1) {
+            x = prevpath[x];
             stk.push(x);
         }
-        while(!stk.isEmpty()){
+        while (!stk.isEmpty()) {
             System.out.print(stk.pop());
         }
         return dist[destination];

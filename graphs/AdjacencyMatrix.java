@@ -2,7 +2,6 @@ package graphs;
 
 import linkedlist.SinglyLinkedList;
 import queues.CircularQueue;
-import queues.LinearQueue;
 import stacks.IntStack;
 
 public class AdjacencyMatrix {
@@ -113,6 +112,17 @@ public class AdjacencyMatrix {
         }
 
     }
+
+    public void dijkstra (int source,int destination){
+
+
+
+
+    }
+
+
+
+
 
     public static void main(String[] aggs) {
 
