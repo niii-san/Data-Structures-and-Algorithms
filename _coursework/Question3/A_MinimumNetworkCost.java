@@ -72,7 +72,7 @@ other devices to it with cost 2, resulting in a total cost of 3
         int[][] connections1 = { { 1, 2, 1 }, { 2, 3, 1 } };
 
         int result1 = minCostToConnectDevices(n1, modules1, connections1);
-        System.out.println("Minimum total cost: " + result1); // Expected Output: 3
+        System.out.println("Minimum total cost: " + result1); // Output: 3
 
         // test 2
         int n2 = 4;
@@ -80,7 +80,7 @@ other devices to it with cost 2, resulting in a total cost of 3
         int[][] connections2 = { { 1, 2, 1 }, { 2, 3, 2 }, { 3, 4, 3 } };
 
         int result2 = minCostToConnectDevices(n2, modules2, connections2);
-        System.out.println("Minimum total cost: " + result2); // Expected Output: 7
+        System.out.println("Minimum total cost: " + result2); // Output: 7
 
         // test 3
         int n3 = 5;
@@ -88,7 +88,7 @@ other devices to it with cost 2, resulting in a total cost of 3
         int[][] connections3 = { { 1, 2, 1 }, { 2, 3, 2 }, { 3, 4, 3 }, { 4, 5, 4 } };
 
         int result3 = minCostToConnectDevices(n3, modules3, connections3);
-        System.out.println("Minimum total cost: " + result3); // Expected Output: 11
+        System.out.println("Minimum total cost: " + result3); // Output: 11
 
 
     }
