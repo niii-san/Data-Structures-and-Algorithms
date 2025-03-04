@@ -1,8 +1,6 @@
 package _coursework.Question2;
 
 import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.Comparator;
 
 /*
  * Question 2 (B)
