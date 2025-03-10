@@ -86,7 +86,6 @@ public class LRUcaching {
         while (current != dummyTail) {
             System.out.println("key: " + current.k + " value: " + current.v);
             current=current.next;
-
         }
 
     }

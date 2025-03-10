@@ -20,8 +20,6 @@ public class Q10_MaxArrElement {
         int[] arr = {5,20,10,12,44,34,40,66};
         System.out.println(maxElement(arr));
 
-
-
         
     }
 }

@@ -61,11 +61,5 @@ public class Q4_Queue2Stacks {
          q1.enqueue(55);
          System.out.println(q1.peek());
 
-
-
-
-
-
-
     }
 }
